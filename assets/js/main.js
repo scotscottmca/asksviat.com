@@ -12,6 +12,29 @@ document.addEventListener('DOMContentLoaded', function() {
     answerDiv.classList.add('hidden');
     processingDiv.classList.remove('show');
     processingDiv.classList.add('hidden');
+
+    // Confetti function
+    function createConfetti() {
+        const colors = ['#ff6b35', '#4285f4', '#34a853', '#fbbc05', '#ea4335', '#9c27b0', '#00d4aa'];
+        const confettiCount = 50;
+        
+        for (let i = 0; i < confettiCount; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + '%';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.animationDelay = Math.random() * 3 + 's';
+            confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            document.body.appendChild(confetti);
+            
+            // Remove confetti after animation
+            setTimeout(() => {
+                if (confetti.parentNode) {
+                    confetti.parentNode.removeChild(confetti);
+                }
+            }, 5000);
+        }
+    }
     
     form.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -41,6 +64,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Show answer
                 answerDiv.classList.remove('hidden');
                 answerDiv.classList.add('show');
+                
+                // Trigger confetti when answer is shown
+                createConfetti();
                 
                 // Hide answer after 3 seconds
                 hideTimeout = setTimeout(() => {
