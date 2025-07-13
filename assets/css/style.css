@@ -103,13 +103,49 @@ body {
     transition: all 0.4s ease;
 }
 
-.answer.hidden {
+.processing {
+    background-color: #4285f4;
+    color: white;
+    padding: 16px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 1rem;
+    border: 1px solid #3367d6;
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.processing::after {
+    content: '';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: translateY(-50%) rotate(0deg); }
+    100% { transform: translateY(-50%) rotate(360deg); }
+}
+
+.answer.hidden,
+.processing.hidden {
     opacity: 0;
     transform: translateY(-10px);
     display: none;
 }
 
-.answer.show {
+.answer.show,
+.processing.show {
     opacity: 1;
     transform: translateY(0);
     display: block;

@@ -10,6 +10,7 @@ layout: default
                 <button type="submit" id="askButton">Ask</button>
             </div>
         </form>
+        <div id="processing" class="processing hidden">Processing...</div>
         <div id="answer" class="answer hidden">Ask Sviat</div>
     </div>
 </div>
