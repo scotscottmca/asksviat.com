@@ -7,6 +7,12 @@ document.addEventListener('DOMContentLoaded', function() {
     let processingTimeout;
     let hideTimeout;
 
+    // Hide both notifications first
+    answerDiv.classList.remove('show');
+    answerDiv.classList.add('hidden');
+    processingDiv.classList.remove('show');
+    processingDiv.classList.add('hidden');
+    
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         
@@ -21,11 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 clearTimeout(hideTimeout);
             }
             
-            // Hide both notifications first
-            answerDiv.classList.remove('show');
-            answerDiv.classList.add('hidden');
-            processingDiv.classList.remove('show');
-            processingDiv.classList.add('hidden');
             
             // Show processing notification
             processingDiv.classList.remove('hidden');
