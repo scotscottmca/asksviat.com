@@ -21,37 +21,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 clearTimeout(hideTimeout);
             }
             
-            // Ensure answer is completely hidden first
+            // Hide both notifications first
             answerDiv.classList.remove('show');
             answerDiv.classList.add('hidden');
-            
-            // Ensure processing is hidden first, then show it
             processingDiv.classList.remove('show');
             processingDiv.classList.add('hidden');
             
-            // Small delay to ensure DOM updates, then show processing
-            setTimeout(() => {
-                processingDiv.classList.remove('hidden');
-                processingDiv.classList.add('show');
-            }, 50);
+            // Show processing notification
+            processingDiv.classList.remove('hidden');
+            processingDiv.classList.add('show');
             
             // After 5 seconds, hide processing and show answer
             processingTimeout = setTimeout(() => {
-                // First hide processing completely
+                // Hide processing
                 processingDiv.classList.remove('show');
                 processingDiv.classList.add('hidden');
                 
-                // Small delay to ensure processing is hidden, then show answer
-                setTimeout(() => {
-                    answerDiv.classList.remove('hidden');
-                    answerDiv.classList.add('show');
-                    
-                    // Hide answer after 3 seconds
-                    hideTimeout = setTimeout(() => {
-                        answerDiv.classList.remove('show');
-                        answerDiv.classList.add('hidden');
-                    }, 3000);
-                }, 100);
+                // Show answer
+                answerDiv.classList.remove('hidden');
+                answerDiv.classList.add('show');
+                
+                // Hide answer after 3 seconds
+                hideTimeout = setTimeout(() => {
+                    answerDiv.classList.remove('show');
+                    answerDiv.classList.add('hidden');
+                }, 3000);
             }, 5000);
         }
     });

@@ -98,9 +98,10 @@ body {
     font-weight: 500;
     margin-top: 1rem;
     border: 1px solid #5f6368;
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 0;
+    transform: translateY(-10px);
     transition: all 0.4s ease;
+    display: none;
 }
 
 .processing {
@@ -112,10 +113,11 @@ body {
     font-weight: 400;
     margin-top: 1rem;
     border: 1px solid #3367d6;
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 0;
+    transform: translateY(-10px);
     transition: all 0.4s ease;
     position: relative;
+    display: none;
 }
 
 .processing::after {
