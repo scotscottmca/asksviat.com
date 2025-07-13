@@ -21,29 +21,37 @@ document.addEventListener('DOMContentLoaded', function() {
                 clearTimeout(hideTimeout);
             }
             
-            // Hide answer if it's showing
+            // Ensure answer is completely hidden first
             answerDiv.classList.remove('show');
             answerDiv.classList.add('hidden');
             
-            // Show processing notification immediately
-            processingDiv.classList.remove('hidden');
-            processingDiv.classList.add('show');
+            // Ensure processing is hidden first, then show it
+            processingDiv.classList.remove('show');
+            processingDiv.classList.add('hidden');
+            
+            // Small delay to ensure DOM updates, then show processing
+            setTimeout(() => {
+                processingDiv.classList.remove('hidden');
+                processingDiv.classList.add('show');
+            }, 50);
             
             // After 5 seconds, hide processing and show answer
             processingTimeout = setTimeout(() => {
-                // Hide processing
+                // First hide processing completely
                 processingDiv.classList.remove('show');
                 processingDiv.classList.add('hidden');
                 
-                // Show answer
-                answerDiv.classList.remove('hidden');
-                answerDiv.classList.add('show');
-                
-                // Hide answer after 3 seconds
-                hideTimeout = setTimeout(() => {
-                    answerDiv.classList.remove('show');
-                    answerDiv.classList.add('hidden');
-                }, 3000);
+                // Small delay to ensure processing is hidden, then show answer
+                setTimeout(() => {
+                    answerDiv.classList.remove('hidden');
+                    answerDiv.classList.add('show');
+                    
+                    // Hide answer after 3 seconds
+                    hideTimeout = setTimeout(() => {
+                        answerDiv.classList.remove('show');
+                        answerDiv.classList.add('hidden');
+                    }, 3000);
+                }, 100);
             }, 5000);
         }
     });
