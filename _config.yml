@@ -1,0 +1,33 @@
+# Site settings
+title: Ask Sviat
+description: Your technology questions answered
+baseurl: ""
+url: "https://asksviat.com"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# Theme settings
+theme: minima
+
+# Collections
+collections_dir: collections
+
+# Sass configuration
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Exclude files
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
