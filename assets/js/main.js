@@ -1,78 +1,51 @@
-// Main JavaScript for Ask Sviat website
+// Simple question processor - always returns "Ask Sviat"
 document.addEventListener('DOMContentLoaded', function() {
-    // Add smooth scrolling to all anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
+    const form = document.getElementById('questionForm');
+    const questionInput = document.getElementById('questionInput');
+    const answerDiv = document.getElementById('answer');
 
-    // Add intersection observer for fade-in animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-
-    // Observe all feature cards
-    document.querySelectorAll('.feature').forEach(feature => {
-        feature.style.opacity = '0';
-        feature.style.transform = 'translateY(20px)';
-        feature.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(feature);
-    });
-
-    // Add parallax effect to hero section (optional, for enhanced experience)
-    const hero = document.querySelector('.hero-section');
-    if (hero) {
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const rate = scrolled * -0.5;
-            hero.style.transform = `translateY(${rate}px)`;
-        });
-    }
-
-    // Add subtle hover effects to tech icons
-    document.querySelectorAll('.tech-icon').forEach(icon => {
-        icon.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.2) rotate(10deg)';
-            this.style.transition = 'transform 0.3s ease';
-        });
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
         
-        icon.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1) rotate(0deg)';
-        });
+        const question = questionInput.value.trim();
+        
+        if (question) {
+            // Hide answer first
+            answerDiv.classList.remove('show');
+            answerDiv.classList.add('hidden');
+            
+            // Show answer after a brief delay for effect
+            setTimeout(() => {
+                answerDiv.classList.remove('hidden');
+                answerDiv.classList.add('show');
+                
+                // Optional: Clear the input after showing answer
+                setTimeout(() => {
+                    questionInput.value = '';
+                    questionInput.focus();
+                }, 1000);
+            }, 300);
+        }
     });
 
-    // Console greeting for developers
-    console.log('%c👋 Hello Developer!', 'color: #0066ff; font-size: 16px; font-weight: bold;');
-    console.log('%cWelcome to Ask Sviat - Built with Jekyll & GitHub Pages', 'color: #00d4aa; font-size: 12px;');
+    // Focus on input when page loads
+    questionInput.focus();
+
+    // Add some keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+        // Press Escape to clear input and hide answer
+        if (e.key === 'Escape') {
+            questionInput.value = '';
+            answerDiv.classList.remove('show');
+            answerDiv.classList.add('hidden');
+            questionInput.focus();
+        }
+    });
+
+    // Add enter key support (already handled by form submit, but good to be explicit)
+    questionInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            form.dispatchEvent(new Event('submit'));
+        }
+    });
 });
-
-// Service Worker registration (for future PWA features)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-                console.log('SW registered: ', registration);
-            })
-            .catch(registrationError => {
-                console.log('SW registration failed: ', registrationError);
-            });
-    });
-}
