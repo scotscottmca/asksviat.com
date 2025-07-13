@@ -15,7 +15,7 @@ body {
 .hero-section {
     height: 100vh;
     width: 100vw;
-    background-image: url('/assets/images');
+    background-image: url('/assets/images/asksviat.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
