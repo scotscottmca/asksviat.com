@@ -11,118 +11,20 @@ body {
     overflow: hidden;
 }
 
-/* Hero Section - Full screen tech background */
+/* Hero Section - Full screen image background */
 .hero-section {
     height: 100vh;
     width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    background: #0a0a0a;
-    overflow: hidden;
-}
-
-/* Animated tech background */
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        linear-gradient(45deg, transparent 30%, rgba(0, 102, 255, 0.1) 50%, transparent 70%),
-        linear-gradient(-45deg, transparent 30%, rgba(0, 212, 170, 0.1) 50%, transparent 70%),
-        radial-gradient(circle at 20% 80%, rgba(0, 102, 255, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(0, 212, 170, 0.2) 0%, transparent 50%);
-    animation: techFlow 20s ease-in-out infinite;
-}
-
-/* Geometric grid pattern */
-.hero-section::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        linear-gradient(rgba(0, 102, 255, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 102, 255, 0.1) 1px, transparent 1px);
-    background-size: 50px 50px;
-    animation: gridShift 30s linear infinite;
-    opacity: 0.3;
-}
-
-@keyframes techFlow {
-    0%, 100% {
-        transform: scale(1) rotate(0deg);
-        opacity: 0.8;
-    }
-    25% {
-        transform: scale(1.1) rotate(90deg);
-        opacity: 0.6;
-    }
-    50% {
-        transform: scale(0.9) rotate(180deg);
-        opacity: 1;
-    }
-    75% {
-        transform: scale(1.05) rotate(270deg);
-        opacity: 0.7;
-    }
-}
-
-@keyframes gridShift {
-    0% {
-        transform: translate(0, 0);
-    }
-    100% {
-        transform: translate(50px, 50px);
-    }
-}
-
-.container {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-}
-
-.hero-title {
-    font-size: clamp(4rem, 12vw, 8rem);
-    font-weight: 700;
-    color: white;
-    letter-spacing: -0.02em;
-    text-shadow: 
-        0 0 20px rgba(255, 255, 255, 0.5),
-        0 0 40px rgba(0, 102, 255, 0.3),
-        0 0 60px rgba(0, 212, 170, 0.2);
-    animation: textGlow 4s ease-in-out infinite alternate;
-}
-
-@keyframes textGlow {
-    from {
-        text-shadow: 
-            0 0 20px rgba(255, 255, 255, 0.5),
-            0 0 40px rgba(0, 102, 255, 0.3),
-            0 0 60px rgba(0, 212, 170, 0.2);
-    }
-    to {
-        text-shadow: 
-            0 0 30px rgba(255, 255, 255, 0.8),
-            0 0 50px rgba(0, 102, 255, 0.5),
-            0 0 80px rgba(0, 212, 170, 0.4);
-    }
+    background-image: url('../images/asksviat.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .hero-title {
-        font-size: clamp(3rem, 10vw, 6rem);
-    }
-    
-    .hero-section::after {
-        background-size: 30px 30px;
+    .hero-section {
+        background-attachment: scroll;
     }
 }
